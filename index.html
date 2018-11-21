@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">Please wait...</div>
+  <script>
+    window.$docsify = {
+      name: 'MetacenterIO',
+      repo: '',
+      subMaxLevel: 3,
+      loadSidebar: true,
+      logo: '_media/metacenter_logo_100.png',
+      repo: 'https://github.com/metacenterIO/docs/',
+      search: 'auto',
+      search : [
+      '/',            // => /README.md
+      '/install',       // => /guide.md
+    ],
+    search: {
+          placeholder: 'Search ...',
+
+          noData: 'No Results!',
+
+          // Headline depth, 1 - 6
+          depth: 2,
+        }
+    }
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+</body>
+</html>
