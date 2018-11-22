@@ -1,9 +1,9 @@
 - [MetacenterIO](/)
 
 - Getting started
-  - [<span class="fa fa-spinner">  Install</span>](install.md)
-  - [Agent](agent.md)
-  - [Security](security.md)
+  - [<span class="fa fa-caret-right">  Install</span>](install.md)
+  - [<span class="fa fa-caret-right">  Agent</span>](agent.md)
+  - [<span class="fa fa-caret-right">  Security</span>](security.md)
 
 
 <br>
