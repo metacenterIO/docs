@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mcsecret
+  namespace: metacenter
+type: Opaque
+data:
+  META_SERVICE: <service_account_id>
+  META_PASSWORD: <service_account_password>
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metacenter-agent
+  namespace: metacenter
+  labels:
+    app: metacenter-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metacenter-agent
+  template:
+    metadata:
+      labels:
+        app: metacenter-agent
+    spec:
+      containers:
+      - name: metacenter-agent
+        image: metacenterio/agent:0.4.5
+#        imagePullPolicy: Always
+        env:
+        - name: CLUSTER_NAME          # K8s Cluster Name, used if not detected
+          value: '<cluster_name>'
+        - name: REGION_CODE           # region code for Cloud Provider
+          value: "<region_code>"
+        - name: META_SERVICE
+          valueFrom:
+            secretKeyRef:
+              name: mcsecret
+              key: META_SERVICE
+        - name: META_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mcsecret
+              key: META_PASSWORD
+      imagePullSecrets:
+      - name: regcred
+      serviceAccountName: metacenter
