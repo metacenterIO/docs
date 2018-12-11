@@ -1,0 +1,31 @@
+.body {
+    font-size: 24px;
+}
+
+.row {
+    height: 75px;
+    background-color: #535c65;
+    align-content: center;
+    margin-right: -15px;
+    margin-left: -15px;
+    box-sizing: border-box;
+}
+
+.login {
+    background-color: rgba(43, 49, 55);
+    border: 0px
+}
+
+.markdown-section ol, .markdown-section p, .markdown-section ul, .markdown-section span {
+    line-height: 3.0rem;
+    font-size: 24px;
+}
+
+.markdown-section pre > code, .markdown-section code {
+    line-height: 3.0rem;
+    font-size: 16px;
+}
+
+.markdown-section blockquote p {
+    font-size: 40px;
+}

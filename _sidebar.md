@@ -10,3 +10,5 @@
 - [**Security**](security.md)
 
 - [**Support**](support.md)
+
+- [**Glossary**](glossary.md)

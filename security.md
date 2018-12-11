@@ -1,4 +1,4 @@
-# Security
+> Security
 
 Metacenter keeps a high degree of security for all customer data. 
 

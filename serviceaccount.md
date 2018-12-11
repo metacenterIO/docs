@@ -1,4 +1,4 @@
-# Service Accounts
+> Service Accounts
 
 Service Accounts allow agents authentication to Metacenter. They are system level identities with
 limited access.

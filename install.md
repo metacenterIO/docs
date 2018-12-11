@@ -1,7 +1,7 @@
 If you don't already have an account, head over to [Account Signup](https://metacenter.io/login#signup)
 
 
-# Install
+> Install
 
 The MetacenterIO agent can be quickly deployed into any Kubernetes cluster running v1.8+.
 
