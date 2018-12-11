@@ -1,4 +1,4 @@
-If you don't already have an account, head over to [Account Signup](https://console.metacenter.io/login#signup)
+If you don't already have an account, head over to [Account Signup](https://metacenter.io/login#signup)
 
 
 # Install
@@ -11,7 +11,7 @@ The agent runs as a Kubernetes Cronjob, executed every 15 minutes by default.
 
 
 ## Requirements
-**Metrics Server** - metrics server must be installed. Generally metrics server comes by default in any cluster running version 1.8+.
+**[Metrics Server](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/metrics-server)** - Generally metrics server comes by default in any cluster running version 1.8+.
 
 **Resource Requirements**
     - 120MB Memory
@@ -34,7 +34,7 @@ Both `RBAC` and `no RBAC` configs are provided.
 
 <img src="_media/add_service_account.png" width="600">
 
-**Pay special attention to anythin within "%% %%"**
+**Pay special attention to anything within "%% %%"**
 
 In particular:
 ```

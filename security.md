@@ -1,7 +1,6 @@
 # Security
 
 Metacenter keeps a high degree of security for all customer data. 
-From TLS-encrypted TCP to at-rest-encryption to automated data retention periods.
 
 ## Information Security & Retention
 All data within Metacenter uses symmetric encryption at rest (AES-256). 
@@ -20,17 +19,20 @@ All communications are encrypted end-to-end with a TLS-encrypted TCP connection.
 
 ## Authentication
 ### Users
-Upon successful authentication to Metacenter, a time-limited token is provided to each browser via session cookie.
-Re-authentication is required once the token is expired.
+Upon successful authentication to Metacenter, users are authenticated for up to 24 hours.
 
 <b style="color:red">Deletion</b> of a User will immediately remove access to Metacenter.
 
 ### Agents
 Agents use JWT (JSON Web Tokens) for authentication to Metacenter.
 Refresh Tokens allow Service Accounts to receive a new token.
-Tokens expire on a rotating 24 hour period. 
+Tokens expire on a short rotating interval.
 
 <b style="color:red">Deletion</b> of a Service Account will immediately remove access to Metacenter.
 
+
 ## Requests
-We take security seriously, every request to Metacenter is validated against both the token and user identity.
+Every request to Metacenter is validated against both a token and an identity. 
+A token alone, even a valid one will not allow requests to data without a valid user.
+
+

@@ -2,10 +2,11 @@
 
 - Getting started
   - [<span class="fa fa-caret-right">  Install</span>](install.md)
-  - [<span class="fa fa-caret-right">  Agent</span>](agent.md)
 
+- [**Agent**](agent.md)
+
+- [**Service Accounts**](serviceaccount.md)
 
 - [**Security**](security.md)
-
 
 - [**Support**](support.md)

@@ -1,6 +1,7 @@
 # Agent
 
-The Agent supplies Metacenter with the data from each Kubernetes cluster.
+The Agent supplies Metacenter with metadata from each Kubernetes cluster.
+
 To get started quickly, checkout the [Install Guide](install.md)
 
 For detailed information about the agent, keep reading.
@@ -61,9 +62,9 @@ This option will effect the accuracy of Metacenter cost analysis.
 ```
 ...
 - name: CLUSTER_NAME          # K8s Cluster Name, used if not detected
-  value: '<cluster_name>'
+  value: '<cluster_name>'     # Ex metacenter-cluster
 - name: REGION_CODE           # region code for Cloud Provider
-  value: "<region_code>"
+  value: "<region_code>"      # Ex us-east-1
 - name: INSTANCE_TENANCY      # For AWS, Shared or Dedicated
   value: "Shared"
 - name: RESERVED_OR_ONDEMAND  # For AWS, Reserved or OnDemand
