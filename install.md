@@ -13,10 +13,11 @@ The agent runs as a Kubernetes Cronjob, executed every 15 minutes by default.
 ## Requirements
 **[Metrics Server](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/metrics-server)** - Generally metrics server comes by default in any cluster running version 1.8+.
 
-**Resource Requirements**
-    - 120MB Memory
-    - 300m CPU
-
+**Minimum Resource Requirements**
+    - 250MB Memory
+    - 500m CPU
+    
+?> By default, the agent is deployed as BestEffort, giving it the lowest priority in Kubernetes for resource consumption. If left with the default configuration, you may find the agent utilizing more resource than listed because it was available during execution.
 
 ## Download
 
