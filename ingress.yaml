@@ -13,4 +13,4 @@ metadata:
 spec:
   backend:
     serviceName: metacenter-docs-svc
-    servicePort: 6001
+    servicePort: 6000

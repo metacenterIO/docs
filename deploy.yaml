@@ -91,7 +91,7 @@ spec:
     spec:
       containers:
       - name: metacenter-docs
-        image: metacenter-docs:0.1
+        image: metacenter/docs:0.1
         ports:
         - containerPort: 80
           protocol: TCP
