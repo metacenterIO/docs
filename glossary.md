@@ -19,9 +19,6 @@ If viewing the home page, the index represents the efficiency of all clusters in
 
 <img src="_media/app_index.png" width="100">
 
-
-
-
 ## App cost this Month
 Calculated cost of applications for the given month based on the resources allocated.
 
@@ -39,6 +36,14 @@ Daily Expenditures demonstrate the application to infrastructure delta on a dail
 Use Case: Often used to demonstrate daily financial gains in efficiency.
 
 <img src="_media/daily_expenditures.png" width="400">
+
+
+### Indexes by Cluster
+Shows the App/Op Index of each cluster monitored.
+
+Use Case: Used to order clusters to target for efficiency gains.
+
+<img src="_media/server_allocation.png" width="400">
 
 
 ### JSON Web Tokens
@@ -64,6 +69,13 @@ If viewing a cluster, the index represents the efficiency of the cluster in a gi
 ### Service Account
 Service Accounts are identities stored in Metacenter by which agents can authenticate programmatically.
 These accounts are limited to only posting data. They use industry standard JWT (JSON Web Tokens) for authentication.
+
+### Server Allocation
+Server allocation shows the distribution of server types in the Kubernetes cluster.
+
+Use Case: Often used when determining a specific group of servers to resize to gain efficiency.
+
+<img src="_media/server_allocation.png" width="400">
 
 
 ### QoS Allocation
