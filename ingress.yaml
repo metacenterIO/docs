@@ -1,0 +1,16 @@
+# gcloud compute addresses create api-static-ip --global
+# gcloud beta compute ssl-certificates create [SSL_CERTIFICATE_NAME] \
+#    --domains [DOMAIN]
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: docs-ingress
+  namespace: docs
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "docs-static-ip"
+    ingress.gcp.kubernetes.io/pre-shared-cert: "docs-metacenter-io,www-docs-metacenter-io"
+    kubernetes.io/ingress.allow-http: "true"
+spec:
+  backend:
+    serviceName: metacenter-docs-svc
+    servicePort: 6001
