@@ -35,17 +35,7 @@ Both `RBAC` and `no RBAC` configs are provided.
 
 <img src="_media/add_service_account.png" width="600">
 
-**Pay special attention to anything within "%% %%"**
-
-In particular:
-```
-- name: CLUSTER_NAME
-  value: %%CLUSTER_NAME%%   # Ex. metacenter-demo
-- name: REGION_CODE
-  value: %%REGION%%         # Ex. us-east-1
-```
-
-Here is a link to more information about [Service Accounts](serviceaccount.md)
+More information about [Service Accounts](serviceaccount.md)
 
 
 
@@ -53,6 +43,6 @@ Here is a link to more information about [Service Accounts](serviceaccount.md)
 
 
 ```
-kubectl apply -f mc_deploy.yaml
+kubectl create -f mc_cronjob.yaml; kubectl create job --from=cronjob/metacenter-agent mc-first-run -n metacenter-agent
 
 ```

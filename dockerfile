@@ -1,15 +1,9 @@
-FROM node:6.15.1-alpine
+FROM littlstar/docker-docsify
 
-RUN apk update; apk add bash
-
-RUN npm install docsify-cli
-
-COPY _media/ ./app/_media
-COPY config/ ./app/config
-COPY vendor/ ./app/vendor
-COPY *.md ./app/
-COPY .nojekyll ./app/
-COPY *.css ./app/
-COPY *.html ./app/
-
-CMD ["docsify", "serve", "./app"]
+COPY _media/ /usr/local/docsify/_media
+COPY config/ /usr/local/docsify/config
+COPY vendor/ /usr/local/docsify/vendor
+COPY *.md /usr/local/docsify/
+COPY .nojekyll /usr/local/docsify/
+COPY *.css /usr/local/docsify/
+COPY *.html /usr/local/docsify/

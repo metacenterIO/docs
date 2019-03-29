@@ -87,3 +87,148 @@ This option will effect the accuracy of Metacenter cost analysis.
 ...
 
 ```
+
+
+cronjob.yaml
+
+```
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: metacenter-agent
+---
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJtY3JlZ2NyZWQiLCJwYXNzd29yZCI6ImhNZU4yR0ZCVXhQUm5xYkQiLCJlbWFpbCI6Im1jcmVnY3JlZEBtZXRhY2VudGVyLmlvIiwiYXV0aCI6ImJXTnlaV2RqY21Wa09taE5aVTR5UjBaQ1ZYaFFVbTV4WWtRPSJ9fX0=
+kind: Secret
+metadata:
+  name: mcregcred
+  namespace: metacenter-agent
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: metacenter-agent
+  name: metacenter
+imagePullSecrets:
+- name: mcregcred
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mcsecret
+  namespace: metacenter-agent
+type: Opaque
+stringData:
+  META_SERVICE: %%SERVICE_ACCOUNT_ID%%
+  META_PASSWORD: %%SERVICE_ACCOUNT_PASSWORD%%
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: metacenter-cluster-role
+rules:
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - '*'
+- apiGroups:
+  - alpha.metacenter.io
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- apiGroups:
+  - metrics.k8s.io
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - endpoints
+  verbs:
+  - get
+  - create
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - list
+  - watch
+  - get
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: metacenter
+subjects:
+- kind: ServiceAccount
+  name: metacenter
+  namespace: metacenter-agent
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: metacenter-cluster-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: metacenter-agent
+  namespace: metacenter-agent
+spec:
+  schedule: "0 * * * *"
+  concurrencyPolicy: Replace
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: metacenter-agent
+            image: metacenterio/agent:0.4.22-beta
+            env:
+            - name: CLUSTER_NAME          # K8s Cluster Name, used if not detected
+              value: %%CLUSTER_NAME%%
+            - name: REGION_CODE           # Region Code for Cloud Provider
+              value: %%REGION%%
+            - name: META_SERVICE
+              valueFrom:
+                secretKeyRef:
+                  name: mcsecret
+                  key: META_SERVICE
+            - name: META_PASSWOR
+              valueFrom:
+                secretKeyRef:
+                  name: mcsecret
+                  key: META_PASSWORD
+            - name: ROOT_PATH
+              value: '.'
+          imagePullSecrets:
+          - name: mcregcred
+          serviceAccountName: metacenter
+          restartPolicy: OnFailure
+```

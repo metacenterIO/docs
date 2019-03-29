@@ -32,7 +32,7 @@ data:
             if ($http_x_forwarded_proto = "http") {
                 return 301 https://docs.metacenter.io$request_uri;
             }
-            proxy_pass http://127.0.0.1:80$requesturi/;
+            proxy_pass http://127.0.0.1:3000$request_uri;
             proxy_http_version 1.1;
           }
       }
@@ -40,7 +40,7 @@ data:
     }
   virtualhost.conf: |
     upstream app {
-      server 127.0.0.1:80;
+      server 127.0.0.1:3000;
     }
     server {
       listen 6000 default_server;
@@ -51,7 +51,7 @@ data:
         if ($http_x_forwarded_proto = "http") {
             return 301 https://docs.metacenter.io$request_uri;
         }
-        proxy_pass http://127.0.0.1:80$requesturi;
+        proxy_pass http://127.0.0.1:3000$request_uri;
         proxy_http_version 1.1;
       }
     }
@@ -91,18 +91,11 @@ spec:
     spec:
       containers:
       - name: metacenter-docs
-        image: metacenter/docs:0.1
+        image: metacenterio/docs:0.1
         ports:
-        - containerPort: 80
+        - containerPort: 3000
           protocol: TCP
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          periodSeconds: 1
-          timeoutSeconds: 1
-          successThreshold: 1
-          failureThreshold: 10
+        command: ["docsify", "serve", "."]
         imagePullPolicy: Always
       - name: nginx
         image: nginx
